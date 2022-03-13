@@ -1,5 +1,5 @@
-#React tailwind template
+# React tailwind template
 
-#About
+## About
 
-###Simple react tailwind template with the extra stuff already removed
+### Simple react tailwind template with the extra stuff already removed
