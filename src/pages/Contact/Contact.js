@@ -3,12 +3,13 @@ import emailjs from 'emailjs-com';
 import { submitButton, textContainer, textField } from '../../components/common/ClassNames';
 import { ServiceID, TemplateID, UserID } from './secrets';
 
-function Contact(props) {
+function Contact() {
     function sendEmail(e) {
         e.preventDefault();  
 
         emailjs.sendForm({ServiceID}, {TemplateID}, e.target, {UserID})
         .then((result) => {
+            alert("Message sent!")
             window.location.reload(); 
         }, (error) => {
             alert("Something went wrong!");

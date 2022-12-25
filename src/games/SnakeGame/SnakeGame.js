@@ -1,21 +1,50 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
-import { gameContainer } from '../../components/common/ClassNames';
+import React, { useEffect, useState } from 'react';
+import { container, gameContainer } from '../../components/common/ClassNames';
+import { createMap, getSnake, moveDown, moveLeft, moveRight, moveUp, pauseGame } from './functions';
 
 function SnakeGame() {
-    const containerRef = useRef(null);
-    const [blockWidth, setBlockWidth] = useState(0);
 
-    useLayoutEffect(() => {
-            let width = containerRef.current.offsetWidth;
-            setBlockWidth(width / 15);
-    }, []);
+    const [thisMap, setThisMap] = useState(createMap());
+    const [thisSnake, setThisSnake] = useState(null);
 
-    console.log(blockWidth);
+    useEffect(() => {
+        if(thisMap?.data){
+            setThisSnake(getSnake(thisMap.data));
+        }
+    }, [thisMap]);
+
+    console.log(thisSnake)
+    const handleKeyDown = event => {
+        switch(event.key){
+            case "ArrowDown":
+                setThisMap(moveDown(thisMap, thisSnake));
+                break;
+            case "ArrowUp":
+                setThisMap(moveUp(thisMap, thisSnake));
+                break;
+            case "ArrowLeft":
+                setThisMap(moveDown(thisMap, thisSnake));
+                break;
+            case "ArrowRight":
+                setThisMap(moveDown(thisMap, thisSnake));
+                break;
+            case "Escape":
+                setThisMap(pauseGame(thisMap));
+                break;
+        }
+    };
+    
     return (
-        <div  ref={containerRef} className={gameContainer}>
-            {
-                
-            }
+        <div className={container}>
+            <div className={gameContainer} tabIndex={0} onKeyDown={handleKeyDown}>
+                {
+                    (thisMap?.paused) 
+                    ?
+                    <></>
+                    :
+                    thisMap?.data?.map(element => <div style={{ backgroundColor: element?.color, width:"2em", height:"2em", border: "solid white" }} ></div>)
+                }
+            </div>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Snake() {
+function Pause(props) {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Snake() {
     );
 }
 
-export default Snake;
+export default Pause;
