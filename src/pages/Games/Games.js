@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { container } from '../../components/common/ClassNames';
 import Runner from '../../games/Runner/Runner';
-import SnakeGame from '../../games/SnakeGame/SnakeGame';
 
 function Games() {
     let location = useLocation().state;
@@ -11,9 +10,7 @@ function Games() {
     return (
         <div className={container}>
         {
-            chosen == "snake" ?
-            <SnakeGame n={100}/>
-            : chosen == "runner" ?
+            chosen == "runner" ?
             <Runner/>
             : <>Chose a game</>
         }
