@@ -13,7 +13,7 @@ export const useWindowDimensions = () => {
 
     useEffect(() => {
         function handleResize() {
-        setWindowDimensions(getWindowDimensions());
+            setWindowDimensions(getWindowDimensions());
         }
 
         window.addEventListener('resize', handleResize);
@@ -21,4 +21,16 @@ export const useWindowDimensions = () => {
     }, []);
 
     return windowDimensions;
+}
+
+export const validateEmail = (input) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input))
+    {
+        return true;
+    }
+        return false;
+}
+
+export const timeout = (delay) => {
+    return new Promise( res => setTimeout(res, delay) );
 }

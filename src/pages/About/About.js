@@ -1,41 +1,61 @@
 import React from 'react';
-import CalenderApp from '../../components/CalenderApp/CalenderApp';
-import { container, innerContainer, innerText, pageDivider, pageHeaderClickable, pageTitle } from '../../components/common/ClassNames';
+import { centerContainer, doubleStack, innerText, pageDivider, pageHeader, pageHeaderClickable, stack } from '../../components/common/ClassNames';
+import { AiOutlineCode } from "react-icons/ai";
+import { motion } from "framer-motion";
 import Collapse from '../../components/common/Collapse/Collapse';
-import me from '../../components/pics/me.png';
 import Contact from '../Contact/Contact';
+import { useWindowDimensions } from '../../components/common/Functions';
 
 function About() {
-    const objects = [
-        {
-            title: <p className={pageHeaderClickable}>Contact</p>,
-            content: [<Contact/>],
-            open: false
-        }
-    ];
+    const skillList = ["Javascript", "HTML", "CSS", "SQL", "Java", ];
+    const {width, height} = useWindowDimensions();
     
     return (
-        <main className={container}>
-            <p className={pageTitle}>Welcome</p>
-            <hr className={pageDivider} />
-            <div className={innerContainer}>
-                <p className={innerText}>My name is Tochy Egeonu and I am a practicing software developer. I do not really have a focus at the moment, I just learn what I can. Feel free to contact me.</p>
-                <a href='https://drive.google.com/file/d/1S4w82XwdNZATUdfBj3Lzz5W0ZnX1a0Px/view?usp=sharing' className={pageHeaderClickable} target="_blank" rel="noreferrer">My resume</a>
-                {objects.map((element,index) => (
-                    <Collapse 
-                        key={index}
-                        trigger={element.title}
-                        content={element.content}
-                        open={element.open}
-                    />
-                ))}
-                <div className="col-start-1 grid grid-col-1 my-5 justify-center mx-10">
-                    <div className="col-start-1 col-span-1 flex flex-col">
-                        <img src={me} className="w-96" alt='selfie' />
+            <div className={stack}>
+                <div className={innerText}>
+                    I am a practicing software developer with a B.S. in Computer Science from the University of Texas at Arlington.
+                </div>
+                <div className={innerText}>
+                    Professional experience creating and maintaining enterprise level web applications and API.
+                </div>
+                <div className={innerText}>
+                    Currently enlisted in the Army National Guard as an infantryman.
+                </div>
+                <div className={innerText}>
+                    Currently employeed by Argodata as a application developer.
+                </div>
+                <hr className={pageDivider}/>
+                <div className={centerContainer}>
+                    <div className={stack}>
+                        <p className={`${pageHeader} text-center`}>Resume</p>
+                        <iframe src="https://drive.google.com/file/d/1S4w82XwdNZATUdfBj3Lzz5W0ZnX1a0Px/preview" width={(width < 875 || height < 475) ? "fit" : "640"} height={(width < 875 || height < 525) ? "fit" : "480"} allow="autoplay">
+                            <a href='https://drive.google.com/file/d/1S4w82XwdNZATUdfBj3Lzz5W0ZnX1a0Px/view?usp=sharing'>Download</a>
+                        </iframe>
                     </div>
                 </div>
+                <hr className={pageDivider}/>
+                <div>
+                    <p className={pageHeader}>Experience</p>
+                    <div className={doubleStack}>
+                        {
+                            skillList.map((element, index) => (
+                                <motion.div 
+                                    key={index} 
+                                    className='flex gap-1'
+                                    initial={{opacity:0, height:0}}
+                                    animate={{opacity:1, height:"auto"}}
+                                    transition={{ duration: 1, ease: 'linear', delay: index }}
+                                >
+                                    <AiOutlineCode className='mt-[4px]'/>
+                                    <p className=''>{element}</p>
+                                </motion.div>
+                            ))
+                        }
+                    </div>
+                    <Contact/>
+                </div>
+
             </div>
-        </main>
     );
 }
 

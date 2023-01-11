@@ -1,10 +1,10 @@
 import React from 'react';
 import CalenderApp from '../../components/CalenderApp/CalenderApp';
 
-function History(props) {
+function History({ display, today }) {
     return (
         <div>
-            <CalenderApp/>
+            <CalenderApp display={display} today={today}/>
         </div>
     );
 }

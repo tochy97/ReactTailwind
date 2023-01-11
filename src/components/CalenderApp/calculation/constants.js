@@ -1,12 +1,12 @@
 export const oneWeek =
 [
-        "Sun",
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat"
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
 ];
 
 export const oneYear =
@@ -69,12 +69,15 @@ export const prevDay = (day) => {
     }
 }
 
-export const monthMax = (month) => {
+export const monthMax = (month, leap) => {
     switch(month)
     {
         case "Jan":
             return 31;
         case "Feb":
+            if(leap){
+                return 29;
+            }
             return 28;
         case "Mar":
             return 31;
@@ -168,4 +171,11 @@ export const prevMonth = (month) => {
 export const getWindowSize = () => {
   const {innerWidth, innerHeight} = window;
   return {innerWidth, innerHeight};
+}
+
+
+export const isLeap = (year) => (year % 4 === 0 ? true : false);
+
+export const getId = (index, array) => {
+    return index + array[index].year;
 }

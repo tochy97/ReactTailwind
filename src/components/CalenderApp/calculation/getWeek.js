@@ -8,7 +8,7 @@ function getWeek(day, value, max)
     }
 
     const output = []
-
+    const today = day;
     switch(day)
     {
         case "Mon":

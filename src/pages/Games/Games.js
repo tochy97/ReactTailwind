@@ -10,7 +10,7 @@ function Games() {
     return (
         <div className={container}>
         {
-            chosen == "runner" ?
+            chosen === "runner" ?
             <Runner/>
             : <>Chose a game</>
         }
